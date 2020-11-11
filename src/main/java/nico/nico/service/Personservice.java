@@ -33,7 +33,10 @@ public class Personservice
         }
         return null;
     }
-
+    public void deletePerson(long id)
+    {
+        repo.deleteById(id);
+    }
     public Personservice()
     {
 

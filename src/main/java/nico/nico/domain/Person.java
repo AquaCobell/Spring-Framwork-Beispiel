@@ -1,5 +1,8 @@
 package nico.nico.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -28,12 +31,13 @@ public class Person
     public void setProjektaufgaben(List<Projektaufgabe> projektaufgaben) {
         this.projektaufgaben = projektaufgaben;
     }
-
-    @OneToMany(
+    @JsonManagedReference
+    @OneToMany
+            (
             mappedBy = "person",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
-            //fetch = FetchType.EAGER
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
     )
     private List<Projektaufgabe> projektaufgaben = new ArrayList<>();
 

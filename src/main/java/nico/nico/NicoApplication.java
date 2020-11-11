@@ -22,13 +22,17 @@ public class NicoApplication {
 		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(NicoApplication.class, args);
 		Personrepo userrepo = configurableApplicationContext.getBean(Personrepo.class);
 
-		Person user = new Person("C999");
+		Person user = new Person("Nico");
+		user.setNachname("Rieser");
+
 		Projektaufgabe maven = new Projektaufgabe("Maven",user);
 		Projektaufgabe intellij = new Projektaufgabe("INtellij",user);
 		List<Projektaufgabe> projekte = Arrays.asList(intellij,maven);
 		user.setProjektaufgaben(projekte);
 		userrepo.save(user);
-		//User user2 = new User("reinhard");
+
+		Person user2 = new Person("Alice");
+		user2.setNachname("Zuberg");//User user2 = new User("reinhard");
 		//userrepo.save(user2);
 
 	}

@@ -2,6 +2,8 @@ package nico.nico.controller;
 
 import nico.nico.domain.Person;
 import nico.nico.service.Personservice;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,16 @@ public class AppController
         long id = test.getId();
         return perso.getPerson(id);
     }
+
+    @DeleteMapping("/person/{id}")
+    public ResponseEntity<String> löscheUser(@PathVariable(name = "id")Person test)
+    {
+        long id = test.getId();
+        perso.deletePerson(id);
+
+        return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
+    }
+
 
 
 }

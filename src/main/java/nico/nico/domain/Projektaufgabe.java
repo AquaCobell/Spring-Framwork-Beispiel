@@ -1,5 +1,8 @@
 package nico.nico.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,8 +17,10 @@ public class Projektaufgabe
     private String name;
     private boolean Abgabe;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "projekt_ID")
+    @JsonIgnore
     private Person person;
 
     public Projektaufgabe()
