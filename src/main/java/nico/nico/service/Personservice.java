@@ -52,6 +52,7 @@ public class Personservice
             temp2.setNachname(person.getNachname());
             temp2.setVorname(person.getVorname());
 
+
             //temp2.getProjektaufgaben().clear();
             //temp2.setProjektaufgaben(person.getProjektaufgaben());
 
