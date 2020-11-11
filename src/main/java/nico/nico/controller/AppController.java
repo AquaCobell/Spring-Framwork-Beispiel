@@ -44,11 +44,27 @@ public class AppController
         return perso.getPerson(id);
     }
 
+    @GetMapping("/aufgabe/{id}") // gibt spezische aufgabe
+    public Projektaufgabe zeigespezifAufgabe(@PathVariable(name = "id")Projektaufgabe test)
+    {
+        long id = test.getId();
+        return aufi.getAufgabe(id);
+    }
+
     @DeleteMapping("/person/{id}") //lösche einen User
     public ResponseEntity<String> löscheUser(@PathVariable(name = "id")Person test)
     {
         long id = test.getId();
         perso.deletePerson(id);
+
+        return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/aufgabe/{id}") //lösche eine aufgabe
+    public ResponseEntity<String> löscheAufgabe(@PathVariable(name = "id")Projektaufgabe test)
+    {
+        long id = test.getId();
+        aufi.deleteProjekt(id);
 
         return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
     }
@@ -61,11 +77,28 @@ public class AppController
 
     }
 
+    @PostMapping(path= "/Aufgabe/", consumes = "application/json", produces = "application/json") //Erstelle neuen User
+    public ResponseEntity<String> addAufgabe(@RequestBody Projektaufgabe aufgabe)
+    {
+        aufi.addAufgabe(aufgabe);
+        return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
+
+    }
+
     @PutMapping(path= "/person/", consumes = "application/json", produces = "application/json") //Bearbeite User
     public ResponseEntity<String> editUser(@RequestBody Person person)
     {
         long id = person.getId();
         perso.editPerson(id, person);
+        return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
+
+    }
+
+    @PutMapping(path= "/aufgabe/", consumes = "application/json", produces = "application/json") //Bearbeite Aufgabe
+    public ResponseEntity<String> editAufgabe(@RequestBody Projektaufgabe aufgabe)
+    {
+        long id = aufgabe.getId();
+        aufi.editAufgabe(id, aufgabe);
         return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
 
     }
