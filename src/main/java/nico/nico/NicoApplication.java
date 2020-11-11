@@ -26,6 +26,7 @@ public class NicoApplication {
 		user.setNachname("Rieser");
 
 		Projektaufgabe maven = new Projektaufgabe("Maven",user);
+		maven.setAbgabe(true);
 		Projektaufgabe intellij = new Projektaufgabe("INtellij",user);
 		List<Projektaufgabe> projekte = Arrays.asList(intellij,maven);
 		user.setProjektaufgaben(projekte);

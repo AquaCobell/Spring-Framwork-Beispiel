@@ -1,6 +1,7 @@
 package nico.nico.controller;
 
 import nico.nico.domain.Person;
+import nico.nico.domain.Projektaufgabe;
 import nico.nico.service.Personservice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class AppController
         return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
     }
 
-    @PostMapping(path= "/person/add", consumes = "application/json", produces = "application/json")
+    @PostMapping(path= "/person/", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> addUser(@RequestBody Person person)
     {
         perso.addPerson(person);
@@ -50,7 +51,7 @@ public class AppController
 
     }
 
-    @PostMapping(path= "/person/edit", consumes = "application/json", produces = "application/json")
+    @PutMapping(path= "/person/", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> editUser(@RequestBody Person person)
     {
         long id = person.getId();
@@ -59,9 +60,10 @@ public class AppController
 
     }
 
-
-
-
-
-
+    @GetMapping("/person/done/{id}")
+    public List<Projektaufgabe> zeigeUnerledigteAbgaben(@PathVariable(name = "id")Person tmp)
+    {
+        long id = tmp.getId();
+        return perso.getopenProjects(id);
+    }
 }

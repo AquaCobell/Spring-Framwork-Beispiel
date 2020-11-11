@@ -1,10 +1,12 @@
 package nico.nico.service;
 
 import nico.nico.domain.Person;
+import nico.nico.domain.Projektaufgabe;
 import nico.nico.repository.Personrepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,5 +58,26 @@ public class Personservice
             repo.save(temp2);
         }
 
+    }
+    public List<Projektaufgabe> getopenProjects(long id)
+    {
+        Optional<Person> perso = repo.findById(id);
+        List<Projektaufgabe> ProjekteUN = new ArrayList<>();
+
+        if(perso.isPresent())
+        {
+            Person tmp = perso.get();
+            List<Projektaufgabe> Projekte = tmp.getProjektaufgaben();
+
+            for (Projektaufgabe pr : Projekte)
+            {
+                if(pr.isAbgabe() == false)
+                {
+                    ProjekteUN.add(pr);
+                }
+            }
+            return ProjekteUN;
+        }
+        return null;
     }
 }
