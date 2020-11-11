@@ -2,6 +2,7 @@ package nico.nico.controller;
 
 import nico.nico.domain.Person;
 import nico.nico.domain.Projektaufgabe;
+import nico.nico.service.Aufgabenservice;
 import nico.nico.service.Personservice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,17 +15,26 @@ import java.util.List;
 public class AppController
 {
     Personservice perso;
-    public AppController(Personservice perso)
+    Aufgabenservice aufi;
+    public AppController(Personservice perso, Aufgabenservice aufi)
     {
         this.perso = perso;
+        this.aufi= aufi;
     }
 
 
     @RequestMapping("/users") //zeigt alle User
     public List<Person> zeigealleUser()
     {
-        System.out.println("hello there");
+
         return perso.ListAll();
+    }
+
+    @RequestMapping("/aufgaben") //zeigt alle Aufgaben
+    public List<Projektaufgabe> zeigealleProjektaufgaben()
+    {
+
+        return aufi.ListAll();
     }
 
     @GetMapping("/person/{id}") // gibt spezischen User
