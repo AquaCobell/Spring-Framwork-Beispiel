@@ -46,17 +46,19 @@ public class Aufgabenservice {
     {
 
     }
+
     public void editAufgabe(long id, Projektaufgabe aufgabe)
     {
         Optional<Projektaufgabe> temp = repo.findById(id);
         if(temp.isPresent())
         {
             Projektaufgabe temp2 = temp.get();
-
-            temp2.setAbgabe(aufgabe.isAbgabe());
             temp2.setName(aufgabe.getName());
-            //temp2.setPerson(aufgabe.getPerson());
+            temp2.setAbgabe(aufgabe.isAbgabe());
 
+
+            //temp2.getProjektaufgaben().clear();
+            //temp2.setProjektaufgaben(person.getProjektaufgaben());
 
             repo.save(temp2);
         }
