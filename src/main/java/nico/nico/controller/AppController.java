@@ -77,7 +77,7 @@ public class AppController
 
     }
 
-    @PostMapping(path= "/Aufgabe/", consumes = "application/json", produces = "application/json") //Erstelle neuen User
+    @PostMapping(path= "/aufgabe/", consumes = "application/json", produces = "application/json") //Erstelle neue Aufgabe funktioniert
     public ResponseEntity<String> addAufgabe(@RequestBody Projektaufgabe aufgabe)
     {
         aufi.addAufgabe(aufgabe);
