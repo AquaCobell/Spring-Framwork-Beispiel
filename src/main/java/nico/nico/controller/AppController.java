@@ -20,21 +20,21 @@ public class AppController
     }
 
 
-    @RequestMapping("/users")
+    @RequestMapping("/users") //zeigt alle User
     public List<Person> zeigealleUser()
     {
         System.out.println("hello there");
         return perso.ListAll();
     }
 
-    @GetMapping("/person/{id}")
+    @GetMapping("/person/{id}") // gibt spezischen User
     public Person zeigespezifUser(@PathVariable(name = "id")Person test)
     {
         long id = test.getId();
         return perso.getPerson(id);
     }
 
-    @DeleteMapping("/person/{id}")
+    @DeleteMapping("/person/{id}") //lösche einen User
     public ResponseEntity<String> löscheUser(@PathVariable(name = "id")Person test)
     {
         long id = test.getId();
@@ -43,7 +43,7 @@ public class AppController
         return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
     }
 
-    @PostMapping(path= "/person/", consumes = "application/json", produces = "application/json")
+    @PostMapping(path= "/person/", consumes = "application/json", produces = "application/json") //Erstelle neuen User
     public ResponseEntity<String> addUser(@RequestBody Person person)
     {
         perso.addPerson(person);
@@ -51,7 +51,7 @@ public class AppController
 
     }
 
-    @PutMapping(path= "/person/", consumes = "application/json", produces = "application/json")
+    @PutMapping(path= "/person/", consumes = "application/json", produces = "application/json") //Bearbeite User
     public ResponseEntity<String> editUser(@RequestBody Person person)
     {
         long id = person.getId();
@@ -60,7 +60,7 @@ public class AppController
 
     }
 
-    @GetMapping("/person/done/{id}")
+    @GetMapping("/person/done/{id}") //Businesslogic -> Zeigt alle unerledigten Abgaben einer Projektaufgabe
     public List<Projektaufgabe> zeigeUnerledigteAbgaben(@PathVariable(name = "id")Person tmp)
     {
         long id = tmp.getId();
