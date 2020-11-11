@@ -26,7 +26,7 @@ public class AppController
         return perso.ListAll();
     }
 
-    @GetMapping("/Person/{id}")
+    @GetMapping("/person/{id}")
     public Person zeigespezifUser(@PathVariable(name = "id")Person test)
     {
         long id = test.getId();
@@ -42,6 +42,13 @@ public class AppController
         return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
     }
 
+    @PostMapping(path= "/person/add", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> addUser(@RequestBody Person person)
+    {
+        perso.addPerson(person);
+        return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
+
+    }
 
 
 }

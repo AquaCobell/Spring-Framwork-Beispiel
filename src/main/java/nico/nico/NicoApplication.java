@@ -32,8 +32,8 @@ public class NicoApplication {
 		userrepo.save(user);
 
 		Person user2 = new Person("Alice");
-		user2.setNachname("Zuberg");//User user2 = new User("reinhard");
-		//userrepo.save(user2);
+		user2.setNachname("Zuberg");
+		userrepo.save(user2);
 
 	}
 
