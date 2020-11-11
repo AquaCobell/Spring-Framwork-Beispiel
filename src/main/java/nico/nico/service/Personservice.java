@@ -41,4 +41,20 @@ public class Personservice
     {
 
     }
+    public void editPerson(long id, Person person)
+    {
+        Optional<Person> temp = repo.findById(id);
+        if(temp.isPresent())
+        {
+            Person temp2 = temp.get();
+            temp2.setNachname(person.getNachname());
+            temp2.setVorname(person.getVorname());
+
+            //temp2.getProjektaufgaben().clear();
+            //temp2.setProjektaufgaben(person.getProjektaufgaben());
+
+            repo.save(temp2);
+        }
+
+    }
 }

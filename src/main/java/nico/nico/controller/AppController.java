@@ -50,5 +50,18 @@ public class AppController
 
     }
 
+    @PostMapping(path= "/person/edit", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> editUser(@RequestBody Person person)
+    {
+        long id = person.getId();
+        perso.editPerson(id, person);
+        return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
+
+    }
+
+
+
+
+
 
 }
