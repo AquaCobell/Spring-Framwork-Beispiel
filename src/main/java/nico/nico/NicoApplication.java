@@ -10,43 +10,26 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
 public class NicoApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(NicoApplication.class, args);
+
 
 		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(NicoApplication.class, args);
-		Personrepo repo = configurableApplicationContext.getBean(Personrepo.class);
+		Personrepo userrepo = configurableApplicationContext.getBean(Personrepo.class);
 
-		Personservice ser = new Personservice() ;
-		Person person = new Person();
-		person.setNachname("Rieser");
-		person.setVorname("Nico");
-		person.setId(1);
-
-		Projektaufgabe proj1 = new Projektaufgabe();
-		proj1.setAbgabe(true);
-		proj1.setName("Maven");
-
-		Projektaufgabe proj2 = new Projektaufgabe();
-		proj1.setAbgabe(false);
-		proj1.setName("Intellij");
-
-		List<Projektaufgabe> liste = new ArrayList<>();
-
-		liste.add(proj1);
-		liste.add(proj2);
-
-		person.setProjektaufgaben(liste);
-		repo.save(person);
-		repo.findAll();
-
-
-		//ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(NicoApplication.class, args);
-		//		UserRepo userrepo = configurableApplicationContext.getBean(UserRepo.class);
+		Person user = new Person("C999");
+		Projektaufgabe maven = new Projektaufgabe("Maven",user);
+		Projektaufgabe intellij = new Projektaufgabe("INtellij",user);
+		List<Projektaufgabe> projekte = Arrays.asList(intellij,maven);
+		user.setProjektaufgaben(projekte);
+		userrepo.save(user);
+		//User user2 = new User("reinhard");
+		//userrepo.save(user2);
 
 	}
 

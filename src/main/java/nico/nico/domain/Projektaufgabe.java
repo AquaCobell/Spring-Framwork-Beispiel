@@ -15,13 +15,19 @@ public class Projektaufgabe
     private boolean Abgabe;
 
     @ManyToOne
-    @JoinColumn(name = "Projekt_ID")
+    @JoinColumn(name = "projekt_ID")
     private Person person;
 
     public Projektaufgabe()
     {
 
     }
+
+    public Projektaufgabe(String name, Person person) {
+        this.name = name;
+        this.person = person;
+    }
+
     public long getId() {
         return id;
     }

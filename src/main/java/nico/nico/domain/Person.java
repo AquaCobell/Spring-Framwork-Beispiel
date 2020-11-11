@@ -1,21 +1,25 @@
 package nico.nico.domain;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+//@Table(name = "Person")
 public class Person
 {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String vorname;
     private String nachname;
+
+    public Person(String vorname) {
+        this.vorname = vorname;
+    }
 
     public List<Projektaufgabe> getProjektaufgaben() {
         return projektaufgaben;
@@ -29,6 +33,7 @@ public class Person
             mappedBy = "person",
             cascade = CascadeType.ALL,
             orphanRemoval = true
+            //fetch = FetchType.EAGER
     )
     private List<Projektaufgabe> projektaufgaben = new ArrayList<>();
 
@@ -40,7 +45,7 @@ public class Person
     }
 
     public void setId(long id) {
-        id = id;
+        this.id = id;
     }
 
     public String getVorname() {
