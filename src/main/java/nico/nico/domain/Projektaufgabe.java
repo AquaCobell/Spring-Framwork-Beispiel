@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class Projektaufgabe
 {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -64,8 +63,4 @@ public class Projektaufgabe
     public void setPerson(Person person) {
         this.person = person;
     }
-    /*public void getAbgabe()
-    {
-        return
-    } */
 }
